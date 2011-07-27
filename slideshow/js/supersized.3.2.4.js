@@ -438,7 +438,8 @@
 					if (base.options.vertical_center || vertical_center_slide ){
 						$(this).css('top', (browserheight - $(this).height())/2);
 					}
-					
+
+					current_slide+=1;
 				});
 				
 				// Basic image drag and right click protection
@@ -450,7 +451,7 @@
 				
 				}
 				
-				current_slide++;
+				
 				
 				return false;
 				
