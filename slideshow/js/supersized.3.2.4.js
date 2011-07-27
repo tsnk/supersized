@@ -307,10 +307,12 @@
 			
 			return base.$el.each(function() {
 		  		//  Resize each image seperately
+				var current_slide = 0;
 		  		$('img', base.el).each(function(){
 		  			
 					thisSlide = $(this);
 					var ratio = (thisSlide.data('origHeight')/thisSlide.data('origWidth')).toFixed(2);	// Define image ratio
+
 					
 					// Gather browser size
 					var browserwidth = base.$el.width(),
@@ -426,12 +428,14 @@
 					}
 					
 					// Horizontally Center
-					if (base.options.horizontal_center){
+					var horizontal_center_slide = (base.options.slides[current_slide].horizontal_center!=undefined && base.options.slides[current_slide].horizontal_center == 1)?true:false;
+					if (base.options.horizontal_center || horizontal_center_slide){
 						$(this).css('left', (browserwidth - $(this).width())/2);
 					}
 					
 					// Vertically Center
-					if (base.options.vertical_center){
+					var vertical_center_slide = (base.options.slides[current_slide].vertical_center!=undefined && base.options.slides[current_slide].vertical_center == 1)?true:false;
+					if (base.options.vertical_center || vertical_center_slide ){
 						$(this).css('top', (browserheight - $(this).height())/2);
 					}
 					
@@ -445,6 +449,8 @@
 					});
 				
 				}
+				
+				current_slide++;
 				
 				return false;
 				
@@ -926,4 +932,3 @@
     };
 		
 })(jQuery);
-
